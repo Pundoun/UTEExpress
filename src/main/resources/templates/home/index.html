@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTE Express</title>
+<link rel="stylesheet" th:href="@{/home/css/main.css}" />
+<meta name="description"
+	content="A leading worldwide provider of transportation, warehousing, fulfillment and global logistics">
+<meta name="robots" content="index,follow">
+<script src="https://kit.fontawesome.com/b5ee560b9a.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/home/css/main.css}">
+</head>
+
+<body>
+	<!-- NAVBAR -->
+	<nav th:replace="~{home/fragment/navbar::nav}"></nav>
+	<!-- HEADER -->
+	<header th:replace="~{home/fragment/header::header}"></header>
+	
+	<section id="about" class="about">
+		<h2 class="section__title">
+			<img th:src="@{home/assets/svg/zigzag.svg}" alt=""> <span
+				class="section__title-span">About us</span> <img
+				th:src="@{home/assets/svg/zigzag.svg}" alt="">
+		</h2>
+		<div class="about__wrap">
+			<p class="about__info">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis
+				deleniti reprehenderit animi est eaque corporis! Nisi, asperiores
+				nam amet doloribus, soluta ut reiciendis. Consequatur modi rem, vero
+				eos ipsam voluptas. <span class="about__info-span"> Error
+					minus sint nobis dolor laborum architecto, quaerat. Voluptatum
+					porro expedita labore esse velit veniam laborum quo obcaecati
+					similique iusto delectus quasi!</span>
+			</p>
+			<img th:src="@{home/assets/images/box.png}" alt="" class="about__img">
+		</div>
+	</section>
+	<section id="services" class="services">
+		<h2 class="section__title">
+			<img th:src="@{home/assets/svg/zigzag.svg}" alt=""> <span
+				class="section__title-span">Our services</span> <img
+				th:src="@{home/assets/svg/zigzag.svg}" alt="">
+		</h2>
+		<h3 class="section__subtitle">
+			Fast and reliable services <span class="services__title-slim">
+				that meet your timeline and budget </span>
+		</h3>
+		<div class="feature__wrap">
+			<div class="feature">
+				<i class="feature__icon fas fa-warehouse"></i>
+				<h3 class="feature__title">Storage</h3>
+				<p class="feature__info">Lorem ipsum dolor sit amet consectetur
+					adipisicing elit. Harum, nulla.</p>
+			</div>
+			<div class="feature">
+				<i class="feature__icon fas fa-people-carry"></i>
+				<h3 class="feature__title">Addictional services</h3>
+				<p class="feature__info">Lorem ipsum dolor sit amet consectetur
+					adipisicing elit.</p>
+			</div>
+			<div class="feature">
+				<i class="feature__icon fas fa-globe-europe"></i>
+				<h3 class="feature__title">Global Delivery</h3>
+				<p class="feature__info">Lorem ipsum dolor sit amet consectetur
+					adipisicing elit. Laboriosam ab nisi sint quidem.</p>
+			</div>
+		</div>
+		<div class="feature__wrap">
+			<div class="feature">
+				<i class="feature__icon fas fa-shipping-fast"></i>
+				<h3 class="feature__title">Land Transport</h3>
+				<p class="feature__info">Lorem ipsum dolor sit amet consectetur.</p>
+			</div>
+			<div class="feature">
+				<i class="feature__icon fas fa-ship"></i>
+				<h3 class="feature__title">Sea Freight</h3>
+				<p class="feature__info">Lorem, ipsum dolor sit amet consectetur
+					adipisicing elit. Incidunt corporis vero libero commodi maxime.</p>
+			</div>
+			<div class="feature">
+				<i class="feature__icon fas fa-plane"></i>
+				<h3 class="feature__title">Air Freight</h3>
+				<p class="feature__info">Lorem ipsum, dolor sit amet consectetur
+					adipisicing elit. Nam exercitationem iusto voluptas.</p>
+			</div>
+		</div>
+	</section>
+	<section id="offer" class="offer">
+		<h2 class="section__title">
+			<img th:src="@{home/assets/svg/zigzag.svg}" alt=""> <span
+				class="section__title-span">Our offer</span><img
+				th:src="@{home/assets/svg/zigzag.svg}" alt="">
+		</h2>
+		<h3 class="section__subtitle">
+			We give you <span class="services__title-slim"> the best </span>
+			pricing plan
+		</h3>
+		<div class="offer__column-wrap">
+			<div class="offer__column">
+				<div class="offer__section">
+					<ul>
+						<li class="offer__heading">Economic</li>
+						<li class="offer__price">$100<br> <span
+							class="offer__price-month">/month</span></li>
+						<div class="offer__listing">
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>3000kg</strong>
+								load</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>125kg</strong>
+								/ pallet</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>24/7</strong>
+								support</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>Free</strong>
+								Packaging</li>
+							<li class="offer__item"><i class="fas fa-check"></i>
+								Warehousing</li>
+						</div>
+						<li>
+							<button class="offer__order">Order</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="offer__column">
+				<div class="offer__section">
+					<ul>
+						<li class="offer__heading">Standard</li>
+						<li class="offer__price">$130<br> <span
+							class="offer__price-month">/month</span></li>
+						<div class="offer__listing">
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>3000kg</strong>
+								load</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>125kg</strong>
+								/ pallet</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>24/7</strong>
+								support</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>Free</strong>
+								Packaging</li>
+							<li class="offer__item"><i class="fas fa-check"></i>
+								Warehousing</li>
+						</div>
+						<li>
+							<button class="offer__order">Order</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="offer__column">
+				<div class="offer__section">
+					<ul>
+						<li class="offer__heading">Premium</li>
+						<li class="offer__price">$180<br> <span
+							class="offer__price-month">/month</span></li>
+						<div class="offer__listing">
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>3000kg</strong>
+								load</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>125kg</strong>
+								/ pallet</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>24/7</strong>
+								support</li>
+							<li class="offer__item"><i class="fas fa-check"></i> <strong>Free</strong>
+								Packaging</li>
+							<li class="offer__item"><i class="fas fa-check"></i>
+								Warehousing</li>
+						</div>
+						<li>
+							<button class="offer__order">Order</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id='track' class="track">
+		<h2 class="track__title">Track your shipment</h2>
+		<form action="/track-order" method="GET">
+			<div class="track__form-wrap">
+				<input type="text" class="track__input"
+					placeholder="Enter parcel number..." name="orderCode" required>
+				<button type="submit" class="track__button">Find</button>
+			</div>
+		</form>
+
+	</section>
+	<!-- FOOTER -->
+	<footer th:replace="~{home/fragment/footer::footer}"></footer>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
+	<script th:src="@{home/js/main.js}"></script>
+</body>
+
+</html>

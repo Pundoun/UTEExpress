@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/homecss.css}">
+    <link rel="stylesheet" th:href="@{/css/customerHeader.css}">
+</head>
+<body>
+    <!-- Header -->
+    <header th:replace="~{admin/fragments/header::header}"></header>
+    
+    <!-- Main Layout -->
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul>
+                <li><a th:href="@{/admin/{id}(id=${id})}">Post</a></li>
+                <li><a th:href="@{/admin/{id}/voucher(id=${id})}">Voucher</a></li>
+                <li><a th:href="@{/admin/{id}/profile(id=${id})}" style="color: #FFC400;">Account</a></li>
+            </ul>
+        </nav>
+
+        <!-- Content -->
+        <div class="content p-4">
+            <h1 class="mb-4 text-center">Admin Details</h1>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center">
+                    <tbody>
+                        <tr>
+                            <th>Picture</th>
+                            <td>
+                                <img height="300" width="300"
+                                     th:if="${admin.picture != null and admin.picture.startsWith('http')}"
+                                     th:src="${admin.picture}" alt="Profile Picture" />
+                                <img height="300" width="300"
+                                     th:if="${admin.picture != null and !admin.picture?.startsWith('http')}"
+                                     th:src="@{/image/{fname}(fname=${admin.picture})}" alt="Profile Picture" />
+                                <img height="300" width="300"
+                                     th:if="${admin.picture == null}"
+                                     th:src="@{/image/{fname}(fname='avatar.jpg')}" alt="Default Avatar" />
+                            </td>
+                        </tr>
+                        <tr><th>Username</th><td th:text="${admin.account.username}"></td></tr>
+                        <tr><th>Admin ID</th><td th:text="${admin.adminID}"></td></tr>
+                        <tr><th>Name</th><td th:text="${admin.name}"></td></tr>
+                        <tr><th>Gender</th>
+                            <td th:text="${admin.gender == 1 ? 'Male' : (admin.gender == 2 ? 'Female' : 'Other')}"></td>
+                        </tr>
+                        <tr><th>City</th><td th:text="${admin.city}"></td></tr>
+                        <tr><th>Address</th><td th:text="${admin.address}"></td></tr>
+                        <tr><th>Date of Birth</th>
+                            <td th:text="${#dates.format(admin.birth, 'yyyy-MM-dd')}"></td>
+                        </tr>
+                        <tr><th>Phone</th><td th:text="${admin.phone}"></td></tr>
+                        <tr><th>CCCD</th><td th:text="${admin.cccd}"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <a th:href="@{/admin/{id}(id=${id})}" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="~{admin/fragments/footer::footer}"></footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

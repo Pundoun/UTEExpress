@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status</title>
+    <link rel="stylesheet" th:href="@{/css/customerHome.css}">
+    <link rel="stylesheet" th:href="@{/css/customerHeader.css}">
+</head>
+<body>
+    <header th:replace="~{customer/fragments/header::header}"></header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a th:href="@{/customer/order/{id}(id=${id})}">Create Order</a></li>
+            <li><a th:href="@{/customer/statistic/{id}(id=${id})}">Statistic</a></li>
+            <li><a th:href="@{/customer/{id}(id=${id})}">Orders to Process</a></li>   
+            <li><a th:href="@{/customer/order/success/{id}(id=${id})}">Orders Success</a></li>
+			<li><a th:href="@{/customer/order/failed/{id}(id=${id})}">Orders Failed</a></li> 
+            <li><a th:href="@{/customer/profile/{id}(id=${id})}">Account</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <div class="title">Track Order - Status</div>
+        </div>
+        <div class="main-content">
+            <h2>Order Information</h2>
+            <div class="order-details">
+                <p><strong>Order ID:</strong> <span th:text="${order.orderID}"></span></p>
+                <p><strong>Sender Address:</strong> <span th:text="${order.source} + ', ' + ${order.sourceCity}"></span></p> <br>
+                <p><strong>Receiver Name:</strong> <span th:text="${order.nameReceiver}"></span></p>
+                <p><strong>Receiver Address:</strong> <span th:text="${order.dest} + ', ' + ${order.destCity}"></span></p> <br>
+                <p><strong>Goods Type:</strong> <span th:text="${order.goods.goodsType}"></span></p>
+                <p><strong>Transport Type:</strong> <span th:text="${order.transport.transportType}"></span></p> <br>
+                <p><strong>COD Fee:</strong> <span th:text="${order.codFee} + ' đ'"></span></p>
+                <p><strong>Ship Fee:</strong> <span th:text="${order.shipFee} + ' đ'"></span></p>
+                <p><strong>Total:</strong> <span th:text="${order.total} + ' đ'"></span></p>
+            </div>
+			
+			<br>
+			
+			<!-- Đây sẽ là nơi hiên cácc trạng thái trạm của đơn hàng -->	
+            <h3>Shipping Status</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ship : ${shipping}">
+						<td>
+						    <span th:each="status : ${statusorder}" 
+						          th:if="${ship.statusOrderID == status.IDStatusOrder}" 
+						          th:text="${status.nameStatus}">
+						    </span>
+						</td>                        
+						<td th:text="${ship.dateUpdate}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Shipper Information</h3>
+            <div th:if="${shipper != null}">
+                <p><strong>Shipper Name:</strong> <span th:text="${shipper.name}"></span></p>
+                <p><strong>Shipper Contact:</strong> <span th:text="${shipper.phone}"></span></p>
+            </div>
+            <div th:if="${shipper == null}">
+                <p>No shipper information available.</p>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>

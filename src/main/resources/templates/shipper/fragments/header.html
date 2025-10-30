@@ -1,0 +1,11 @@
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <img alt="Logo" class="navbar-logo" th:src="@{/shipper/assets/img/truck.png}">UTE Logistics Express</a>
+        <div>
+            <span sec:authentication="name"></span>
+            <a class="btn btn-primary" th:href="@{/logout}">Log out</a>
+        </div>
+    </div>
+</nav>

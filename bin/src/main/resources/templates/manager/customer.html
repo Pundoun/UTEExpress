@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Manager</title>
+    <link rel="icon" th:href="@{/manager/assets/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/manager/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/manager/css/manager.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{manager/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <!-- Notifications -->
+    <div class="row justify-content-center w-100">
+        <div id="save-notifs" class="col-12 w-50 mx-auto">
+            <div th:if="${param.success}">
+                <div class="alert alert-success">
+                    Package has been deleted!
+                </div>
+            </div>
+            <div th:if="${param.failure}">
+                <div class="alert alert-danger">
+                    Package could not be deleted!
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" th:href="@{/manager/{id}(id=${manager.managerID})}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Customer</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Packets Table -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive">
+                    <table class="table">
+                        <thead>
+	                        	<th scope="col">ID</th>
+					            <th scope="col">Name</th>
+					            <th scope="col">Gender</th>
+					            <th scope="col">Picture</th>
+					            <th scope="col">City</th>
+					            <th scope="col">Address</th>
+					            <th scope="col">Birth Date</th>
+					            <th scope="col">Phone</th>
+					            <th scope="col">CCCD</th>
+					            <th scope="col">Username</th>
+					            <th scope="col">Active Status</th>
+					            <th scope="col">Delete</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="customer : ${allCustomers}">
+                            <td th:text="${{customer.customerID}}"></td>
+                            <td th:text="${{customer.name}}"></td>
+                            <td th:text="(${{customer.gender == 1 ? 'Male' : (customer.gender == 0 ? 'Female' : 'Unknown')}})"></td>
+                            <td> Picture </td>
+                            <td th:text="${{customer.city}}"></td>
+                            <td th:text="${{customer.address}}"></td>
+                            <td th:text="${#dates.format(customer.birth, 'dd/MM/yyyy')}"></td>
+                            <td th:text="${{customer.phone}}"></td>
+                            <td th:text="${{customer.cccd}}"></td>
+                            <td th:text="${{customer.account.username}}"></td>
+                            
+                           <td th:style="${customer.isActive == 0 ? 'color: red !important; font-weight: bold;' : 'color: green !important; font-weight: bold;'}"
+   								 th:text="${customer.isActive == 0 ? 'InActive' : 'Active'}">
+   							</td>
+   							
+   					<!-- 		<td>
+							    <a class="btn btn-primary"
+							       th:href="@{/manager/{managerID}/customer/{customerID}/history(managerID=${manager.managerID}, customerID=${customer.customerID})}">
+							        View
+							    </a>
+							</td> -->
+                           
+                            <td>
+							    <a class="btn btn-primary"
+							       th:href="@{/manager/{id}/delete-customer(id=${manager.managerID}, username=${customer.account.username})}">
+							        Delete
+							    </a>
+							</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto my-3">
+                    <a class="btn btn-primary add-button" th:href="@{/manager/{id}/add-customer(id=${manager.managerID})}">Add New Customer</a></div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{manager/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

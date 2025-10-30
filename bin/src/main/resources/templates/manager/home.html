@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Manager</title>
+    <link rel="icon" th:href="@{/manager/assets/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/manager/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/manager/css/manager.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{manager/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1>Manager Dashboard</h1>
+            </div>
+        </div>
+    </div>
+    <div id="db-menu" class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Registerd Request</h5>
+                        <a class="btn btn-primary" th:href="@{/manager/{id}/customer-request(id=${manager.managerID})}">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Shippers</h5>
+                        <a class="btn btn-primary" th:href="@{/manager/{id}/shippers(id=${manager.managerID})}">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Customer</h5>
+                        <a class="btn btn-primary" th:href="@{/manager/{id}/customers(id=${manager.managerID})}">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <a class="btn btn-primary" th:href="@{/manager/{id}/orders(id=${manager.managerID})}">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Account Information</h5>
+                        <a class="btn btn-primary" th:href="@{/manager/{id}/manager-info(id=${manager.managerID})}">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Reports</h5>
+                        <a class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{manager/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

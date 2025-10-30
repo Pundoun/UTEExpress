@@ -1,0 +1,141 @@
+/*!
+ * Start Bootstrap - Landing Page v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+  z-index: 100;
+  -webkit-box-shadow: 0px 5px 10px #00000030;
+  -moz-box-shadow: 0px 5px 10px #00000030;
+  box-shadow: 0px 5px 10px #00000030;
+}
+
+.navbar-logo {
+  width: 42px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: -1px 1px 2px #000000;
+  font-size: 30px;
+  font-weight: 800;
+  color: #E57373 !important; /* Soft Red */
+}
+
+.navbar .btn {
+  margin: 0 10px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #FFD54F !important; /* Light Gold */
+  border-color: #FFB74D; /* Light Orange */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  text-shadow: -1px 1px 2px #000000;
+  color: #FFF !important;
+}
+
+label,
+th,
+td,
+а {
+  text-shadow: -1px 1px 2px #000000;
+  color: #FFF !important;
+}
+
+.signup_btn {
+  margin-top: 1rem;
+}
+
+select {
+  width: 100%;
+}
+
+td .btn-primary {
+  padding: 0.075rem 0.5rem !important;
+}
+
+#admin-db {
+  position: relative;
+  background: linear-gradient(45deg, rgba(239, 154, 154, 0.7), rgba(255, 245, 157, 0.7)), url("../img/db-admin.jpg") center top no-repeat; /* Soft Red to Light Yellow */
+  background-size: cover;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  min-height: 48rem;
+}
+
+#save-notifs {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.card h5 {
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: -1px 1px 1px #666;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #E57373 !important; /* Soft Red */
+}
+
+.arrow {
+  top: 10px;
+  position: absolute;
+  border: solid white;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #000000;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.add-button {
+  margin-bottom: 2rem;
+}
+
+.notifs {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+#data-table {
+  margin-top: 5rem;
+  min-height: 28rem;
+  background-color: transparent !important;
+}
+
+footer.footer {
+  z-index: 100;
+  -webkit-box-shadow: 0px -5px 10px #00000030;
+  -moz-box-shadow: 0px -5px 10px #00000030;
+  box-shadow: 0px -5px 10px #00000030;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}

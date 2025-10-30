@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Manager</title>
+    <link rel="icon" th:href="@{/manager/assets/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/manager/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/manager/css/manager.css}">
+
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{manager/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+ 
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" th:href="@{/manager/{id}/orders(id=${manager.managerID})}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pending</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Packets Table -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive">
+                    <table class="table">
+                        <thead>
+	                        <th scope="col">ID</th>
+	                      
+	                        <th scope="col">Weight</th>
+	                        <th scope="col">Height</th>
+	                        <th scope="col">Width</th>
+	                        
+	                        <th scope="col">From</th>
+	                        <th scope="col">To</th>
+	                        
+	     					<th scope="col">Goods Type</th>
+	     					<th scope="col">Transport Type</th>
+	                        
+							<th scope="col">Status</th>
+			
+	                        <th scope="col">Update</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${allPending}">
+                            <td th:text="${{order.orderID}}"></td>
+                            <!-- <td th:text="(${{packet.status}} == 1) ? 'Processing' :
+                                            ((${{packet.status}} == 2) ? 'On the way' :
+                                            ((${{packet.status}} == 3) ? 'Delivered' : 'Not received'))"></td> -->
+                            
+                            <td th:text="${{order.weight}}"></td>
+                            <td th:text="${{order.height}}"></td>
+                            <td th:text="${{order.width}}"></td>
+                            
+                            <td th:text="${{order.source}}"></td>
+                            <td th:text="${{order.dest}}"></td>
+                            
+                            <td th:text="${{order.goods.goodsType}}"></td>
+                            <td th:text="${{order.transport.transportType}}"></td>
+                            
+                            <td style="color: yellow !important; font-weight: bold;" >Pending</td>
+                     
+                            
+                           <!--  <td th:text="${#dates.format(packet.statusDate, 'dd/MM/yyyy - HH:mm')}"></td>
+                            <td th:text="${{packet.weight}}"></td>
+                            <td th:text="${{packet.deliveryPrice}}"></td>
+                            <td th:text="${{packet.employee.username}}"></td>
+                            <td th:text="'#' + ${{packet.sender.id}} + ' ' + ${{packet.sender.firstName}}+ ' ' + ${{packet.sender.lastName}}"></td>
+                            <td th:text="'#' + ${{packet.recipient.id}} + ' ' + ${{packet.recipient.firstName}}+ ' ' + ${{packet.recipient.lastName}}"></td>
+                            <td th:text="(${{packet.isOffice}} ? 'Office ' : ' ') + ${{packet.address}}"></td> -->
+                            <td>
+                                <a class="btn btn-primary" th:href="@{/manager/{id}/assign-shipper(id=${manager.managerID}, orderid=${order.orderID})}"
+                                   >Update</a>
+                            </td>
+                           
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         </div>
+            
+    </section>
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{manager/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/manager/jquery/jquery.min.js}"></script>
+<script th:src="@{/manager/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+
+</body>
+
+</html>

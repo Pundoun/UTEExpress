@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Manager</title>
+    <link rel="icon" th:href="@{/shipper/assets/img/truck.png}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/shipper/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/shipper/css/manager.css}">
+
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{shipper/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+	    <div class="row justify-content-center">
+	        <div class="col-xl-9 mx-auto">
+	            <h1>
+	                <a class="arrow" th:href="@{/shipperposttopost/{id}(id=${shipper.shipperID})}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account Information
+	            </h1>
+	        </div>
+	    </div>
+	</div>
+<div class="row justify-content-center">
+    <div class="col-10 col-sm-4 col-sm-offset-4">
+        <form th:action="@{/shipperposttopost/{id}/account-info(id=${shipper.shipperID})}" method="POST">
+            
+            <div class="row">
+		    <div class="col">
+			    <div class="form-group">
+			        <label for="inputName">Name</label>
+			        <input class="form-control" id="inputName" name="name"
+			               placeholder="Enter name" required type="text" th:value="${shipper.name}"/>
+			    </div>
+			</div>
+
+		    <div class="col">
+		    <div class="form-group">
+		        <label for="inputGender">Gender</label>
+		        <select class="form-control" id="inputGender" name="gender" required>
+		            <option value="1" th:selected="${shipper.gender == 1}">Male</option>
+		            <option value="2" th:selected="${shipper.gender == 0}">Female</option>
+		        </select>
+		    </div>
+		</div>
+
+		</div>
+		
+		<div class="form-group">
+		    <label for="inputPicture">Picture</label>
+		    <input class="form-control" id="inputPicture" name="picture"
+		           placeholder="Enter picture URL" required type="text" />
+		</div>
+		
+		<div class="row">
+		    <div class="col">
+		        <div class="form-group">
+		            <label for="inputCity">City</label>
+		            <input class="form-control" id="inputCity" name="city" th:value="${shipper.city}"
+		                   placeholder="Enter city" required type="text" readonly />
+		        </div>
+		    </div>
+		    <div class="col">
+		        <div class="form-group">
+		            <label for="inputAddress">Address</label>
+		            <input class="form-control" id="inputAddress" name="address" th:value="${shipper.address}"
+		                   placeholder="Enter address" required type="text" />
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="row">
+		    <div class="col">
+		    <div class="form-group">
+		        <label for="inputBirth">Date of Birth</label>
+		        <input class="form-control" id="inputBirth" name="birth"
+		               th:value="${#dates.format(shipper.birth, 'yyyy-MM-dd')}" 
+		               placeholder="Enter birth date" required type="date" />
+		    </div>
+		</div>
+
+		    <div class="col">
+		        <div class="form-group">
+		            <label for="inputPhone">Phone</label>
+		            <input class="form-control" id="inputPhone" name="phone" th:value="${shipper.phone}"
+		                   placeholder="Enter phone number" required type="text" />
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="inputCccd">CCCD</label>
+		    <input class="form-control" id="inputCccd" name="cccd" th:value="${shipper.cccd}"
+		           placeholder="Enter CCCD" required type="text" />
+		</div>
+            
+            <!-- Old Password -->
+            <div class="form-group">
+                <label for="inputOldPassword">Old Password</label>
+                <input class="form-control" id="inputOldPassword" name="oldPassword"
+                       placeholder="Enter old password"
+                       required />
+            </div>
+            
+            <!-- New Password -->
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="inputNewPassword">New Password</label>
+                        <input class="form-control" id="inputNewPassword" name="newPassword"
+                               placeholder="Enter new password" required type="password" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="inputNewPasswordConfirm">Confirm New Password</label>
+                        <input class="form-control" id="inputNewPasswordConfirm" name="confirmPassword"
+                               placeholder="Confirm new password" required type="password" />
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-lg btn-primary btn-block signup_btn" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{shipper/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/shipper/jquery/jquery.min.js}"></script>
+<script th:src="@{/shipper/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

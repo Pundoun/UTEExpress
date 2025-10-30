@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+</head>
+<body>
+    <div class="header" th:fragment="header">
+    <div>
+        <ul>
+        	<li class="logo"><img  th:src="@{/assets/images/mercury-red.png}" alt="Logo" style="height: 50px; margin-right: 15px;"> </li>
+            <span sec:authentication="name"></span>
+            <li><a th:href="@{/logout}">Log out</a></li>
+            <li><a th:href="@{/login}" class="active">Sign in</a></li>
+        </ul>
+   </div>	
+	 </div>
+</body>
+</html>

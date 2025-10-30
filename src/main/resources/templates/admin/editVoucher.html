@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Edit Voucher</title>
+    <link rel="stylesheet" th:href="@{/css/homecss.css}">
+    <link rel="stylesheet" th:href="@{/css/customerHeader.css}">
+</head>
+<body>
+    <header th:replace="~{admin/fragments/header::header}"></header>
+    <div class="container">
+    <div class="sidebar">
+        <ul>
+            <li><a th:href="@{/admin/{id}(id=${id})}">Post</a></li>
+            <li><a th:href="@{/admin/{id}/voucher(id=${id})}" style="color: #FFC400;">Voucher</a></li>
+            <li><a th:href="@{/admin/{id}/profile(id=${id})}">Account</a></li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <h1>Edit Voucher</h1>
+        <form th:action="@{/admin/{id}/voucher/save/edit/{voucherid}(id=${id}, voucherid=${voucherid})}" method="post">
+            <!-- Voucher Information -->
+            
+                <legend>Voucher Information</legend>
+                
+                <label for="voucherName">Voucher Name:</label>
+                <input type="text" id="voucherName" name="voucherName" th:value="${voucher.voucherName}" required/><br>
+                
+                <label for="amount">Voucher Amount:</label>
+                <input type="number" id="amount" name="amount" th:value="${voucher.amount}" required/><br>
+                
+                <label for="discount">Voucher Value:</label>
+                <input type="number" id="discount" name="discount" step="0.01" th:value="${voucher.discount}" required/><br>
+                
+                <label for="dateStart">Date Start:</label>
+                <input type="date" id="dateStart" name="dateStart" th:value="${#dates.format(voucher.dateStart, 'yyyy-MM-dd')}" required/><br>
+                
+                <label for="dateEnd">Date End:</label>
+                <input type="date" id="dateEnd" name="dateEnd" th:value="${#dates.format(voucher.dateEnd, 'yyyy-MM-dd')}" required/><br>
+                
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" cols="50" th:text="${voucher.description}" required></textarea><br>
+                
+                <label for="transportID">Transport Type:</label>
+                <select id="transportID" name="transportID" required>
+                    <option th:each="transport : ${transports}" 
+                            th:value="${transport.transportID}" 
+                            th:text="${transport.transportType}" 
+                            th:selected="${voucher.transport != null and voucher.transport.transportID == transport.transportID}">
+                    </option>
+                </select><br>
+                
+                <label for="goodsID">Goods Type:</label>
+                <select id="goodsID" name="goodsID" required>
+                    <option th:each="good : ${goods}" 
+                            th:value="${good.goodsID}" 
+                            th:text="${good.goodsType}" 
+                            th:selected="${voucher.goods != null and voucher.goods.goodsID == good.goodsID}">
+                    </option>
+                </select><br>
+           
+            
+            <button type="submit">Save</button>
+        </form>
+        </div>
+    </div>
+    <footer th:replace="~{admin/fragments/footer::footer}"></footer> 
+</body>
+</html>

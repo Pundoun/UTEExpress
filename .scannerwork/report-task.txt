@@ -1,0 +1,6 @@
+projectKey=UTEExpress
+serverUrl=http://localhost:9000
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9000/dashboard?id=UTEExpress
+ceTaskId=7feb7b71-34ab-40d2-b0ef-0995e9c7e993
+ceTaskUrl=http://localhost:9000/api/ce/task?id=7feb7b71-34ab-40d2-b0ef-0995e9c7e993

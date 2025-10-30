@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders to process - UTE Express</title>
+    <link rel="stylesheet" th:href="@{/css/customerHome.css}">
+    <link rel="stylesheet" th:href="@{/css/customerHeader.css}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Thêm thư viện SweetAlert2 -->
+</head>
+<body>
+	<header th:replace="~{customer/fragments/header::header}"></header>
+	
+    <div class="sidebar">
+        <ul>
+            <li><a th:href="@{/customer/order/{id}(id=${id})}">Create Order</a></li>
+			<li><a th:href="@{/customer/statistic/{id}(id=${id})}">Statistic</a></li>
+			<li><a th:href="@{/customer/{id}(id=${id})}" style="color: red;">Orders to Process</a></li>
+			<li><a th:href="@{/customer/order/success/{id}(id=${id})}">Orders Success</a></li>
+			<li><a th:href="@{/customer/order/failed/{id}(id=${id})}">Orders Failed</a></li>
+			<li><a th:href="@{/customer/profile/{id}(id=${id})}">Account</a></li>
+        </ul>
+    </div>
+    
+    <!-- content -->
+    <div class="content">
+        <div class="header">
+            <div class="title">Order to Process</div>
+             <!-- Search Form -->
+	        
+        </div>
+        <div class="main-content">
+        	<div class="search-container">
+	            <input type="text" id="searchQuery" placeholder="Search by Order ID or Receiver Name" class="form-control" onkeyup="filterOrders()" />
+	        </div>
+            <h2>Process</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>OrderID</th>
+                        <th>Sender Address</th>
+                        <th>Receiver name</th>
+                        <th>Receiver Address</th>
+                        <th>Goods Type</th>
+                        <th>Transport Type</th>
+                        <th>COD Fee</th>
+                        <th>COD Surcharge</th>
+                        <th>Ship Fee</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order : ${orders}">
+		                    <td th:text="${order.orderID}"></td>
+		                  	<td th:text="${order.source} + ' ,' + ${order.sourceCity}" ></td>		             
+		                    <td th:text="${order.nameReceiver}"></td>
+		                    <td th:text="${order.dest} + ' ,' + ${order.destCity}"></td>
+		                    <td th:text="${order.goodsType}"></td>
+		                  	<td th:text="${order.transportType}"></td>
+		                    <td th:text="${order.codFee} + ' đ'"></td>
+		                    <td th:text="${order.COD_surcharge} + ' đ'"></td>
+		                    <td th:text="${order.shipFee} + ' đ'"></td>
+		                    <td th:text="${order.total} + ' đ'"></td>
+		                    <td>
+			                    <div class="actions">
+                					<a th:href="@{/customer/order/status/{id}(id=${order.orderID})}">
+							            <button class="accept">Status</button>
+							        </a>
+							        <!-- Chỉ hiển thị nút Cancel nếu orderStatusID == 0 -->
+								    <a th:if="${order.statusOrderID == 0}" th:href="@{/customer/order/cancel/{id}(id=${order.orderID})}">
+								        <button class="reject">Cancel</button>
+								    </a>
+            					</div>
+				            </td>
+	                </tr>
+	                <tr th:if="${#lists.isEmpty(orders)}">
+	                    <td colspan="7" style="text-align: center;">Không có đơn hàng nào.</td>
+	                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- content -->
+    
+    <!-- Hiển thị Popup nếu có thông báo lỗi -->
+    <script>
+        // Lấy errorMessage từ model (nếu có)
+        const errorMessage = /*[[${errorMessage}]]*/ 'null';
+
+        // Kiểm tra và hiển thị popup nếu có lỗi
+        if (errorMessage !== 'null') {
+            Swal.fire({
+                icon: 'error',          // Biểu tượng lỗi
+                title: 'Error',         // Tiêu đề
+                text: errorMessage,     // Nội dung thông báo
+                confirmButtonText: 'OK' // Nút xác nhận
+            });
+        }
+    </script>
+    
+    <script>
+        // Function to filter the table based on the search query
+        function filterOrders() {
+            const query = document.getElementById('searchQuery').value.toLowerCase();
+            const rows = document.querySelectorAll('table tbody tr');
+            
+            rows.forEach(row => {
+                const orderID = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+                const receiverName = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                if (orderID.includes(query) || receiverName.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+	
+</body>
+</html>

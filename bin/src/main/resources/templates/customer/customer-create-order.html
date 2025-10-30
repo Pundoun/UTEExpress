@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/customerOrder.css}"> 
+    <link rel="stylesheet" th:href="@{/css/customerHeader.css}">
+</head>
+<body>
+	<!-- HEADER -->
+	<header th:replace="~{customer/fragments/header::header}"></header>
+
+	<div class="sidebar">
+		<ul>
+            <li><a th:href="@{/customer/order/{id}(id=${id})}" style="color: red;">Create Order</a></li>
+			<li><a th:href="@{/customer/statistic/{id}(id=${id})}">Statistic</a></li>
+			<li><a th:href="@{/customer/{id}(id=${id})}" >Orders to Process</a></li>
+			<li><a th:href="@{/customer/order/success/{id}(id=${id})}">Orders Success</a></li>
+			<li><a th:href="@{/customer/order/failed/{id}(id=${id})}">Orders Failed</a></li>
+			<li><a th:href="@{/customer/profile/{id}(id=${id})}" >Account</a></li>
+		</ul>
+	</div> 
+	
+    <!-- Main Content -->
+	<div class="content">
+		<!-- card Shadow -->
+		<div class="card shadow">
+			<!-- row g-0 -->
+			<div class="row g-0">
+			<h2>Shipping form</h2>
+			
+	        <form class="form1" th:action="@{/customer/order/create/{id}(id=${id})}" method="POST">
+	             <!-- Receiver Information -->
+	             <h3>Receiver Information</h3>
+	            <div class="form-group">
+	                <label for="nameReceiver">Receiver Name:</label>
+	                <input type="text" id="nameReceiver" name="nameReceiver" required>
+	            </div>
+	            <div class="form-group">
+	                <label for="phoneReceiver">Receiver Phone:</label>
+	                <input type="tel" id="phoneReceiver" name="phoneReceiver" required>
+	            </div>
+	            
+	            <!-- Destination Addresses -->
+	            <div class="form-group">
+	                <label for="dest">Receiver Address:</label>
+	                <input type="text" id="dest" name="dest" required>
+	            </div>
+	            <!-- City -->
+				<div class="form-group">
+					<label for="city" class="form-label"> Receiver City:</label>
+					<select  id="destCity" name="destCity" required>
+						<option th:each="city : ${cities}" 
+					     	th:value="${city.cityName}" 
+					        th:text="${city.cityName}" 
+					        th:selected="${city.cityName == 'Hà Nội'}">
+					        th:attr="data-city-fee=${city.cityID}">
+					        
+					    </option>
+					</select>
+				</div>
+	            
+	            <!-- SENDER INFORMATION -->
+	            <!-- Source address -->
+	            <h3>Sender Information</h3>
+	            <div class="form-group">
+	                <label for="source">Sender Address:</label>
+	                <input type="text" id="source" name="source" required>
+	            </div>
+	           
+				<!-- City -->
+				<div class="form-group">
+					<label for="city" class="form-label">Sender City:</label>
+					<select id="sourceCity" name="sourceCity" required>
+						<option th:each="city : ${cities}" 
+					     	th:value="${city.cityName}" 
+					        th:text="${city.cityName}" 
+					        th:selected="${city.cityName == 'Hà Nội'}"
+					        th:attr="data-city-fee=${city.cityID}">
+					    </option>
+					</select>
+				</div>
+					
+	            
+	            <h3>Order Information</h3>
+	            <!-- Weight -->
+	            <div class="form-group">
+	                <label for="weight">Weight (kg):</label>
+	                <input type="number" id="weight" name="weight" required>
+	            </div>
+	
+	            <!-- Height -->
+	            <div class="form-group">
+	                <label for="height">Height (cm):</label>
+	                <input type="number" id="height" name="height" required>
+	            </div>
+	
+	            <!-- Width -->
+	            <div class="form-group">
+	                <label for="width">Width (cm):</label>
+	                <input type="number" id="width" name="width" required>
+	            </div>
+	
+	          
+	            <!-- Fee Information -->
+	            <div class="form-group">
+	                <label for="codFee">COD Fee:</label>
+	                <input type="number" id="codFee" name="codFee" value="0" min="0">
+	            </div>
+	            
+				
+	
+	            <!-- Goods -->
+	            <div class="form-group">
+	                <label for="goodsID">Goods:</label>
+	                <select  id="goodsID" name="goodsID" required>
+						<option th:each="good : ${goods}" 
+					     	th:value="${good.goodsID}" 
+					        th:text="${good.goodsType}" 
+					        th:attr="data-good-fee=${good.goodsFee}">
+					      
+					    </option>
+					</select>
+	            </div>
+	            
+	            <!-- Transport -->
+	            <div class="form-group">
+	                <label for="transportID">Transport:</label>
+	                <select  id="transportID" name="transportID" required>
+						<option th:each="transport : ${transports}" 
+					     	th:value="${transport.transportID}" 
+					        th:text="${transport.transportType}"
+					        th:selected="${transport.transportID == 1}"			        
+					        th:attr="data-transport-fee=${transport.transportFee}" >
+					    </option>
+					</select>
+	            </div>
+	            
+	            
+	            
+	            
+	            <h3>Total</h3>
+	            
+	            <div class="form-group">
+				    <label for="shipFee">Shipping Fee:</label>
+				    <input type="number" id="shipFee" name="shipFee" readonly>
+				</div>
+				
+	            <!-- Voucher -->
+	            <div class="form-group">
+	                <label for="voucherID">Voucher:</label>
+	                <select id="voucherID" name="voucherID">
+	                <option th:value="0">No Voucher</option> <!-- Default option -->
+	                    <option th:each="voucher : ${vouchers}" 
+					     	th:value="${voucher.voucherID}" 
+					        th:text="${voucher.voucherName}" 
+					        th:selected="${voucher.voucherID == 1}"			        
+					        th:attr="data-voucher-fee=${voucher.discount}" >
+					    </option>
+	                </select>
+	            </div>
+	            
+	            <div class="form-group">
+				    <label for="COD_surcharge">COD surcharge:</label>
+				    <input type="number" id="COD_surcharge" name="COD_surcharge" readonly>
+				</div>
+	            
+	            <div class="form-group">
+				    <label for="total">Total:</label>
+				    <input type="number" id="total" name="total" readonly>
+				</div>
+	
+	            <!-- Submit Button -->
+	            <div class="form-group">
+	                <button type="submit">Create Order</button>
+	            </div>
+
+	        </form>
+			</div>
+			<!-- row g-0 -->
+		</div>
+		<!-- card Shadow -->
+	</div>
+	<!-- Main Content -->
+	
+		
+	
+    <script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+		
+	<script>
+	    // Hàm tính phí vận chuyển
+	    function calculateShipFee() {
+	    const weight = Math.max(parseFloat(document.getElementById('weight').value) || 1, 1);
+	    const width = Math.max(parseFloat(document.getElementById('width').value) || 1, 1);
+	    const height = Math.max(parseFloat(document.getElementById('height').value) || 1, 1);
+	    const codFee = Math.max(parseFloat(document.getElementById('codFee').value) || 0, 0);
+	
+	    const voucherSelect = document.getElementById('voucherID');
+	    const voucherFee = parseFloat(voucherSelect?.options[voucherSelect.selectedIndex]?.dataset?.voucherFee) || 0;
+
+	    const transportSelect = document.getElementById('transportID');
+	    const transportFee = parseFloat(transportSelect?.options[transportSelect.selectedIndex]?.dataset?.transportFee) || 0;
+	
+	    const destCitySelect = document.getElementById('destCity');
+	    const destCityFee = parseFloat(destCitySelect?.options[destCitySelect.selectedIndex]?.dataset?.cityFee) || 0;
+	
+	    const sourceCitySelect = document.getElementById('sourceCity');
+	    const sourceCityFee = parseFloat(sourceCitySelect?.options[sourceCitySelect.selectedIndex]?.dataset?.cityFee) || 0;
+	
+	    const goodsSelect = document.getElementById('goodsID');
+	    const goodFee = parseFloat(goodsSelect?.options[goodsSelect.selectedIndex]?.dataset?.goodFee) || 0;
+	
+	    let province = Math.abs(destCityFee - sourceCityFee) || 1;
+	
+	    let shipFee = transportFee * goodFee * (province + weight);
+	    let cod_surcharge = codFee * 0.1;
+	
+	    if (voucherFee < 0) {
+	        shipFee += voucherFee;
+	    } else if (voucherFee > 0) {
+	        shipFee *= (1 - voucherFee);
+	    }
+	    if (shipFee <0) shipFee = 0;
+	
+	    let total = shipFee + cod_surcharge + codFee;
+	    total = Math.max(total, 0); // Prevent negative total
+	    
+	 	// Set default value for voucherID on form load
+	    //document.getElementById('voucherID').value = document.getElementById('voucherID').value || 0;
+	
+	    document.getElementById('shipFee').value = shipFee.toFixed(2);
+	    document.getElementById('COD_surcharge').value = cod_surcharge.toFixed(2);
+	    document.getElementById('total').value = total.toFixed(2);
+	}
+	    
+
+	    // Lắng nghe sự kiện thay đổi trên các trường
+	    document.getElementById('weight').addEventListener('input', calculateShipFee);
+	    document.getElementById('width').addEventListener('input', calculateShipFee);
+	    document.getElementById('height').addEventListener('input', calculateShipFee);
+	    document.getElementById('codFee').addEventListener('input', calculateShipFee);
+	    document.getElementById('transportID').addEventListener('change', calculateShipFee);
+	    document.getElementById('goodsID').addEventListener('change', calculateShipFee);
+	    document.getElementById('voucherID').addEventListener('change', calculateShipFee);
+	    document.getElementById('destCity').addEventListener('change', calculateShipFee);
+	    document.getElementById('sourceCity').addEventListener('change', calculateShipFee);
+	    
+	</script>
+	
+</body>
+</html>

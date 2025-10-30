@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Manager</title>
+    <link rel="icon" th:href="@{/manager/assets/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/manager/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/manager/css/manager.css}">
+
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{manager/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+ 
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" th:href="@{/manager/{id}/orders(id=${manager.managerID})}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All Orders</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Packets Table -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive">
+                    <table class="table">
+                        <thead>
+	                        <th scope="col">ID</th>
+	                      
+	                        <th scope="col">Weight</th>
+	                        <th scope="col">Height</th>
+	                        <th scope="col">Width</th>
+	                        
+	                        <th scope="col">From</th>
+	                        <th scope="col">To</th>
+	                        
+	     					<th scope="col">Goods Type</th>
+	     					<th scope="col">Transport Type</th>
+	                        
+							<th scope="col">Status</th>
+			
+	          
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${allOrders}">
+                            <td th:text="${{order.orderID}}"></td>
+                      
+                            
+                            <td th:text="${{order.weight}}"></td>
+                            <td th:text="${{order.height}}"></td>
+                            <td th:text="${{order.width}}"></td>
+                            
+                            <td th:text="${{order.source}}"></td>
+                            <td th:text="${{order.dest}}"></td>
+                            
+                            <td th:text="${{order.goods.goodsType}}"></td>
+                            <td th:text="${{order.transport.transportType}}"></td>
+                            
+                            <td th:switch="${order.shipping.statusOrderID}">
+                           
+						      <span th:case="0" style="color: yellow !important; font-weight: bold;">Pending</span>
+						      <span th:case="1" style="color: orange !important; font-weight: bold;">Confirmed</span>
+						      <span th:case="2" style="color: blue !important; font-weight: bold;">Shipper take</span>
+						      <span th:case="3" style="color: purple !important; font-weight: bold;">Success</span>
+						      <span th:case="4" style="color: black !important; font-weight: bold;">At Source Post</span>
+						      <span th:case="5" style="color: pink !important; font-weight: bold;">In transit to Dest Post</span>
+						      <span th:case="6" style="color: brown !important; font-weight: bold;">At Dest Post</span>
+						      <span th:case="7" style="color: darkblue !important; font-weight: bold;">Shipper is shipping</span>
+						      <span th:case="8" style="color: green !important; font-weight: bold;">Delivered</span>
+						      <span th:case="9" style="color: red !important; font-weight: bold;">Failed</span>
+						      <span th:case="*">Unknown Status</span> <!-- Trường hợp mặc định -->    
+                            </td>
+                     
+                            
+                          
+                         
+                           
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         </div>
+            
+    </section>
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{manager/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/manager/jquery/jquery.min.js}"></script>
+<script th:src="@{/manager/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+
+</body>
+
+</html>

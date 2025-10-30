@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Manager</title>
+    <link rel="icon" th:href="@{/shipper/assets/img/truck.png}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/shipper/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/shipper/css/manager.css}">
+
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{shipper/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" th:href="@{/shipperposttocus/{id}(id=${shipper.shipperID})}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shipper Dashboard
+                    </h1>
+            </div>
+        </div>
+    </div>
+    <div id="db-menu" class="container">
+        <div class="row justify-content-center">
+            
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Shipment Dashboard</h5>
+                        <a class="btn btn-primary" th:href="@{/shipperposttocus/{id}/shipments(id=${shipper.shipperID})}">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Account Infomation</h5>
+                        <a class="btn btn-primary" th:href="@{/shipperposttocus/{id}/account-info(id=${shipper.shipperID})}">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{shipper/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/shipper/jquery/jquery.min.js}"></script>
+<script th:src="@{/shipper/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

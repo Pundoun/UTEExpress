@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Manager</title>
+    <link rel="icon" th:href="@{/manager/assets/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/manager/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/manager/css/manager.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{manager/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <form th:action="@{/manager/{id}/update-order-inpost(id=${manager.managerID}, orderid=${order.orderID})}" method="POST" >
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 mx-auto">
+                    <h1><a class="arrow" th:href="@{/manager/{id}/orders-in-post(id=${manager.managerID})}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Assign Shipper
+                    </h1>
+                    <br/>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-10 col-sm-4 col-sm-offset-4 class-">
+                    <div class="form-group row">
+                        <div class="col"><label for="inputReadOnlyId" class="col-form-label">ID Order</label></div>
+                        <div class="col"><input type="text" th:value="${order.orderID}" readonly class="form-control" id="inputReadOnlyId"></div>
+                    </div>
+                    <div class="form-group row">
+					    <div class="col">
+					        <label for="inputReadOnlyId" class="col-form-label">Current Status</label>
+					    </div>
+					    <div class="col">
+					        <input type="text" 
+					               readonly 
+					               class="form-control" 
+					               id="inputReadOnlyId" 
+					               th:value="
+					                   ${order.shipping.statusOrderID == 0 ? 'Pending' :
+					                     order.shipping.statusOrderID == 1 ? 'Confirmed' :
+					                     order.shipping.statusOrderID == 2 ? 'Shipper take' :
+					                     order.shipping.statusOrderID == 3 ? 'Success' :
+					                     order.shipping.statusOrderID == 4 ? 'At Source Office' :
+					                     order.shipping.statusOrderID == 5 ? 'In transit to Dest Post' :
+					                     order.shipping.statusOrderID == 6 ? 'At Dest Post' :
+					                     order.shipping.statusOrderID == 7 ? 'Shipper is shipping' :
+					                     order.shipping.statusOrderID == 8 ? 'Delivered' :
+					                     order.shipping.statusOrderID == 9 ? 'Failed' : 'Unknown Status'}">
+					    </div>
+					</div>
+
+                    <div class="row">
+                        <!-- <div class="col">
+                            <div class="form-group">
+							    <label for="statusOrder">Order Status</label>
+							    <select class="form-control" id="statusOrder" name="statusOrder">
+							        <th:block th:each="status : ${statusOder}" required>
+							            <option th:value="${status.IDStatusOrder}" th:text="${status.nameStatus}" ></option>
+							        </th:block>
+							    </select>
+							</div>
+                        </div> -->
+                        <div class="col">
+                            <div class="form-group">
+							    <label for="total">Total Fee</label>
+		                        <input class="form-control" id="total" name="total"
+		                               readonly th:value="${order.shipping.total}"
+		                              >
+							</div>
+                        </div>
+						
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+							    <label for="weight">Weight</label>
+		                        <input class="form-control" id="weight" name="weight"
+		                               readonly th:value="${order.weight}" >
+							</div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+							    <label for="height">Height</label>
+		                        <input class="form-control" id="height" name="height"
+		                               readonly type="text"
+		              					th:value="${order.height}"
+		                              >
+							</div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+							    <label for="width">Width</label>
+		                        <input class="form-control" id="width" name="width"
+		                               readonly type="text"
+		              					th:value="${order.width}"
+		                              >
+							</div>
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDate">Date</label>
+                        <input class="form-control" id="inputDate" name="dateUpdate"
+                               type="date" required>
+                    </div>
+                    <div class="form-group">
+					    <label for="inputSender">Shipper</label>
+					    <select class="form-control" id="inputSender" name="shipperID" required>
+					        <option value="" disabled selected>Select a Shipper</option>
+					        <!-- Loop through the shippers list and display the name with hidden shipperID -->
+					        <th:block th:each="shipper : ${shippers}">
+					            <option th:value="${shipper.shipperID}" th:text="${shipper.name}"></option>
+					        </th:block>
+					    </select>
+					</div>
+                    
+                  <div class="row">
+                	<div class="col">
+                		<div class="form-group">
+	                        <label for="source">Source Address</label>
+	                        <input class="form-control" id="source" name="source"
+	                               placeholder="Address"
+	                               required type="text"
+	              					th:value="${order.source}" readonly
+	                              >
+	                    </div>
+                	</div>
+                	<div class="col">
+	                	<div class="form-group">
+	                        <label for="dest">Destination Address</label>
+	                        <input class="form-control" id="dest" name="dest"
+	                               placeholder="Address"
+	                               required type="text"
+	              					th:value="${order.dest}" readonly
+	                              >
+	                    </div>
+	                </div>
+               </div>
+               
+               <!--  -->
+                <div class="row">
+                	<div class="col">
+                		<div class="form-group">
+	                        <label for="sourceCity">From</label>
+	                        <input class="form-control" id="sourceCity" name="sourceCity"
+	                               placeholder="Address"
+	                               required type="text"
+	              					th:value="${order.sourceCity}" readonly
+	                              >
+	                    </div>
+                	</div>
+                	<div class="col">
+	                	<div class="form-group">
+	                        <label for="destCity">To</label>
+	                        <input class="form-control" id="destCity" name="destCity"
+	                               placeholder="Address"
+	                               required type="text"
+	              					th:value="${order.destCity}" readonly
+	                              >
+	                    </div>
+	                </div>
+               </div>
+               
+               <!--  -->
+                <div class="row">
+                	<div class="col">
+                		<div class="form-group">
+	                        <label for="goods">Type Of Goods</label>
+	                        <input class="form-control" id="goods" name="goods"
+	                               placeholder="Address"
+	                               required type="text"
+	              					th:value="${order.goods.goodsType}" readonly
+	                              >
+	                    </div>
+                	</div>
+                	<div class="col">
+	                	<div class="form-group">
+	                        <label for="transport">Type of Transport</label>
+	                        <input class="form-control" id="transport" name="transport"
+	                               placeholder="Address"
+	                               required type="text"
+	              					th:value="${order.transport.transportType}" readonly
+	                              >
+	                    </div>
+	                </div>
+               </div>
+               
+               <!--  -->
+                    
+                    <button class="btn btn-lg btn-primary btn-block signup_btn" type="submit">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{manager/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

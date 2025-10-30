@@ -1,0 +1,237 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Màu nền tổng thể */
+}
+
+/* Header */
+.header {
+    background-color: #D11D1D; /* Màu đỏ */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Container tổng bao gồm sidebar và content */
+.container {
+    display: flex; /* Sử dụng Flexbox để chia sidebar và content */
+    min-height: 100vh; /* Chiều cao tối thiểu 100% màn hình */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px; /* Độ rộng sidebar */
+    background-color: #333; /* Màu nền sidebar */
+    color: white;
+    padding: 20px 0;
+}
+
+.sidebar ul {
+    list-style: none; /* Loại bỏ bullet list */
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: block;
+    padding: 10px 20px;
+    transition: background 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #D11D1D; /* Hover màu đỏ */
+    border-radius: 5px;
+}
+
+/* Content */
+.content {
+    flex: 1; /* Phần còn lại của màn hình */
+    background-color: #fff; /* Màu nền trắng */
+    padding: 20px;
+}
+
+.content h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    margin-top: 20px;
+}
+
+/* Voucher Information */
+form div {
+    margin-bottom: 15px;
+}
+
+form legend {
+    font-weight: bold;
+    color: #D11D1D;
+    margin-bottom: 10px;
+}
+
+form label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+form input[type="number"],
+form input[type="date"],
+form select{
+	width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+form button {
+    background-color: #D11D1D;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+}
+
+form button:hover {
+    background-color: #A70000;
+    transition: 0.3s;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #D11D1D;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.actions button {
+    margin: 0 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions .add {
+    background-color: #1CC88B;
+    color: white;
+}
+
+.actions .reject {
+    background-color: #D11D1D;
+    color: white;
+}
+
+.actions .accept {
+    background-color: #28a745; /* Xanh lá */
+    color: white;
+}
+
+/* Nút Add Post */
+.addPost {
+    background-color: #D11D1D;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.addPost:hover {
+    background-color: #A70000;
+    transition: 0.3s;
+}
+
+/* Popup Error Styling */
+.swal2-popup {
+    font-size: 1.2em !important;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    background-color: #1CC88B;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #17A673;
+}
+
+h1,h2,h3
+{
+    font-weight: bold;
+    font-size: 23
+    margin-bottom: 10px;
+}

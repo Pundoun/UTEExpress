@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Sign In/Up</title>
+<link rel='stylesheet'
+	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+<link rel="stylesheet" th:href="@{/home/css/style.css}">
+<style type="text/css">
+/* Header Styles */
+.main-header {
+	background-color: #333; /* Màu nền header */
+	color: white;
+	padding: 10px 20px; /* Padding bên trong header */
+	position: fixed; /* Cố định header */
+	width: 100%; /* Chiếm toàn bộ chiều ngang */
+	top: 0; /* Định vị ở trên cùng */
+	z-index: 1000; /* Hiển thị trên các thành phần khác */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
+}
+
+/* Navigation Bar */
+.nav-bar {
+	display: flex; /* Hiển thị các mục thành hàng ngang */
+	justify-content: center; /* Căn giữa các mục trong thanh điều hướng */
+	align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.nav-list {
+	list-style: none; /* Loại bỏ dấu chấm trước các mục */
+	display: flex; /* Hiển thị các mục thành hàng ngang */
+	gap: 20px; /* Khoảng cách giữa các mục */
+}
+
+.nav-link {
+	text-decoration: none; /* Loại bỏ gạch chân */
+	color: white; /* Màu chữ */
+	font-size: 1em; /* Kích thước chữ */
+	font-weight: bold; /* Chữ đậm */
+	transition: color 0.3s ease; /* Hiệu ứng mượt khi thay đổi màu */
+}
+
+.nav-link:hover {
+	color: #FFD700; /* Màu vàng khi hover */
+}
+
+/* Sticky Header Adjustment */
+main {
+	padding-top: 60px;
+	/* Chừa khoảng trống để tránh header che mất nội dung */
+}
+
+/* Responsive Design */
+@media ( max-width : 768px) {
+	.nav-list {
+		flex-direction: column; /* Hiển thị dọc trên màn hình nhỏ */
+		align-items: center; /* Căn giữa các mục */
+		gap: 10px; /* Giảm khoảng cách giữa các mục */
+	}
+}
+</style>
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="main-header">
+		<div class="header-container">
+			<nav class="nav-bar">
+				<ul class="nav-list">
+					<li><a th:href="@{/}" class="nav-link">Home</a></li>
+					<li><a href="#about" class="nav-link">About</a></li>
+					<li><a href="#services" class="nav-link">Services</a></li>
+					<li><a href="#contact" class="nav-link">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form th:action="@{/process-register}" method="post">
+				<h1>Create Account</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
+						href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
+						href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your email for registration</span> <input
+					name="fullname" type="text" placeholder="Name" required /> <input
+					name="username" type="email" placeholder="Username" required /> <input
+					name="password" type="password" placeholder="Password" required />
+				<select name="city"
+					style="background-color: #eee; border: none; padding: 12px 15px; margin: 8px 0; width: 100%;"
+					required>
+					<option value="" disabled selected>Select a city</option>
+					<option th:each="city : ${allCity}" th:value="${city.cityName}"
+						th:text="${city.cityName}"></option>
+				</select>
+				<button>Sign Up</button>
+			</form>
+			
+
+		</div>
+		<div class="form-container sign-in-container">
+			<form th:action="@{/login}" method="post">
+				<h1>Sign in</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
+						href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
+						href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your account</span> <input type="text"
+					placeholder="Username" name="username" /> <input type="password"
+					placeholder="Password" name="password" /> <a href="/forgot-password">Forgot
+					your password?</a>
+				<button>Sign In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal
+						info</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your personal details and start journey with us</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<div class="footer-content">
+			<p>&copy; 2024 Group 6. All rights reserved.</p>
+			<ul class="footer-menu">
+				<li><a href="#">Privacy Policy</a></li>
+				<li><a href="#">Terms of Service</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script th:src="@{js/script.js}"></script>
+
+</body>
+</html>

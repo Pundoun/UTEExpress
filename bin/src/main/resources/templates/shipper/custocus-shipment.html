@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>UTEExpress - Shipper</title>
+    <link rel="icon" th:href="@{/shipper/assets/img/truck.png}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/shipper/css/bootstrap/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/shipper/css/manager.css}">
+
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="~{shipper/fragments/header::nav}"></nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+ 
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" th:href="@{/shippercustocus/{id}(id=${shipper.shipperID})}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shipments</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Take Shipment -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive">
+                	<h2>Take Shipment Section</h2>
+                    <table class="table">
+                        <thead>
+	                        <th scope="col">ID</th>
+	                      
+	                        <th scope="col">Weight</th>
+	                        <th scope="col">Height</th>
+	                        <th scope="col">Width</th>
+	                        
+	                        <th scope="col">From</th>
+	                        <th scope="col">To</th>
+	                        
+	     					<th scope="col">Goods Type</th>
+	     					<th scope="col">Transport Type</th>
+	                        
+							<th scope="col">Status</th>
+			
+	                        <th scope="col">Take Shipment</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${allShipmentsTake}">
+                            <td th:text="${{order.orderID}}"></td>
+                            <!-- <td th:text="(${{packet.status}} == 1) ? 'Processing' :
+                                            ((${{packet.status}} == 2) ? 'On the way' :
+                                            ((${{packet.status}} == 3) ? 'Delivered' : 'Not received'))"></td> -->
+                            
+                            <td th:text="${{order.weight}}"></td>
+                            <td th:text="${{order.height}}"></td>
+                            <td th:text="${{order.width}}"></td>
+                            
+                            <td th:text="${{order.source}}"></td>
+                            <td th:text="${{order.dest}}"></td>
+                            
+                            <td th:text="${{order.goods.goodsType}}"></td>
+                            <td th:text="${{order.transport.transportType}}"></td>
+
+						    <td style="font-weight: bold; color: yellow !important " 
+						        th:text="${order.shipping.statusOrderID == 0 ? 'Pending' : order.shipping.statusOrderID == 1 ? 'Confirmed' : 
+						        			order.shipping.statusOrderID == 2 ? 'Shipper take' : order.shipping.statusOrderID == 3 ? 'Success' : 
+						        			order.shipping.statusOrderID == 4 ? 'At Source Office' : order.shipping.statusOrderID == 5 ? 'In transit to Dest Post' : 
+						        			order.shipping.statusOrderID == 6 ? 'Shipper is shipping' :
+						        			order.shipping.statusOrderID == 7 ? 'Shipper is shipping' : order.shipping.statusOrderID == 8 ? 'Delivered' : 
+						        			order.shipping.statusOrderID == 9 ? 'Failed' : 'Unknown'}">
+						    </td>
+ 
+
+                     
+                            
+                           <!--  <td th:text="${#dates.format(packet.statusDate, 'dd/MM/yyyy - HH:mm')}"></td>
+                            <td th:text="${{packet.weight}}"></td>
+                            <td th:text="${{packet.deliveryPrice}}"></td>
+                            <td th:text="${{packet.employee.username}}"></td>
+                            <td th:text="'#' + ${{packet.sender.id}} + ' ' + ${{packet.sender.firstName}}+ ' ' + ${{packet.sender.lastName}}"></td>
+                            <td th:text="'#' + ${{packet.recipient.id}} + ' ' + ${{packet.recipient.firstName}}+ ' ' + ${{packet.recipient.lastName}}"></td>
+                            <td th:text="(${{packet.isOffice}} ? 'Office ' : ' ') + ${{packet.address}}"></td> -->
+                            <td>
+                                <a class="btn btn-primary" th:href="@{/shippercustocus/{id}/take-shipment(id=${shipper.shipperID}, orderid=${order.orderID})}"
+                                   >Take</a>
+                            </td>
+                           
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- Pagination -->
+	                <!-- <nav aria-label="Page navigation" class="mt-3">
+	                    <ul class="pagination justify-content-center">
+	                        <li class="page-item">
+	                            <a class="page-link" aria-label="Previous">
+	                                <span aria-hidden="true">&laquo;</span>
+	                            </a>
+	                        </li>
+	                        <li class="page-item" 
+	                            >
+	                            <a class="page-link" ></a>
+	                        </li>
+	                        <li class="page-item" >
+	                            <a class="page-link" >
+	                                <span aria-hidden="true">&raquo;</span>
+	                            </a>
+	                        </li>
+	                    </ul>
+	                </nav> -->
+                </div>
+            </div>
+         </div>
+            
+    </section>
+    
+     <!-- In progress Shipment -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive">
+                	<h2>In Progress Shipment Section</h2>
+                    <table class="table">
+                        <thead>
+	                        <th scope="col">ID</th>
+	                      
+	                        <th scope="col">Weight</th>
+	                        <th scope="col">Height</th>
+	                        <th scope="col">Width</th>
+	                        
+	                        <th scope="col">From</th>
+	                        <th scope="col">To</th>
+	                        
+	     					<th scope="col">Goods Type</th>
+	     					<th scope="col">Transport Type</th>
+	                        
+							<th scope="col">Status</th>
+			
+	                        <th scope="col">Success</th>
+	                        <th scope="col">Failed</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${allShipmentsInProgress}">
+                            <td th:text="${{order.orderID}}"></td>
+                            <!-- <td th:text="(${{packet.status}} == 1) ? 'Processing' :
+                                            ((${{packet.status}} == 2) ? 'On the way' :
+                                            ((${{packet.status}} == 3) ? 'Delivered' : 'Not received'))"></td> -->
+                            
+                            <td th:text="${{order.weight}}"></td>
+                            <td th:text="${{order.height}}"></td>
+                            <td th:text="${{order.width}}"></td>
+                            
+                            <td th:text="${{order.source}}"></td>
+                            <td th:text="${{order.dest}}"></td>
+                            
+                            <td th:text="${{order.goods.goodsType}}"></td>
+                            <td th:text="${{order.transport.transportType}}"></td>
+
+						    <td style="font-weight: bold; color: yellow !important " 
+						        th:text="${order.shipping.statusOrderID == 0 ? 'Pending' : order.shipping.statusOrderID == 1 ? 'Confirmed' : 
+						        			order.shipping.statusOrderID == 2 ? 'Shipper take' : order.shipping.statusOrderID == 3 ? 'Success' : 
+						        			order.shipping.statusOrderID == 4 ? 'At Source Office' : order.shipping.statusOrderID == 5 ? 'In transit to Dest Post' : 
+						        			order.shipping.statusOrderID == 6 ? 'Shipper is shipping' :
+						        			order.shipping.statusOrderID == 7 ? 'Shipper is shipping' : order.shipping.statusOrderID == 8 ? 'Delivered' : 
+						        			order.shipping.statusOrderID == 9 ? 'Failed' : 'Unknown'}">
+						    </td>
+ 
+                            <td>
+                                <a class="btn btn-primary" th:href="@{/shippercustocus/{id}/success-shipment(id=${shipper.shipperID}, orderid=${order.orderID})}"
+                                   >Success</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" th:href="@{/shippercustocus/{id}/failed-shipment(id=${shipper.shipperID}, orderid=${order.orderID})}"
+                                   >Failed</a>
+                            </td>
+                           
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         </div>
+            
+    </section>
+    
+     <!-- Success Shipment -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive">
+                <h2>Success Shipment Section</h2>
+                    <table class="table">
+                        <thead>
+	                        <th scope="col">ID</th>
+	                      
+	                        <th scope="col">Weight</th>
+	                        <th scope="col">Height</th>
+	                        <th scope="col">Width</th>
+	                        
+	                        <th scope="col">From</th>
+	                        <th scope="col">To</th>
+	                        
+	     					<th scope="col">Goods Type</th>
+	     					<th scope="col">Transport Type</th>
+	                        
+							<th scope="col">Status</th>
+			
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${allShipmentsDelivered}">
+                            <td th:text="${{order.orderID}}"></td>
+                            <!-- <td th:text="(${{packet.status}} == 1) ? 'Processing' :
+                                            ((${{packet.status}} == 2) ? 'On the way' :
+                                            ((${{packet.status}} == 3) ? 'Delivered' : 'Not received'))"></td> -->
+                            
+                            <td th:text="${{order.weight}}"></td>
+                            <td th:text="${{order.height}}"></td>
+                            <td th:text="${{order.width}}"></td>
+                            
+                            <td th:text="${{order.source}}"></td>
+                            <td th:text="${{order.dest}}"></td>
+                            
+                            <td th:text="${{order.goods.goodsType}}"></td>
+                            <td th:text="${{order.transport.transportType}}"></td>
+
+						    <td style="font-weight: bold; color: green !important " 
+						        th:text="${order.shipping.statusOrderID == 0 ? 'Pending' : order.shipping.statusOrderID == 1 ? 'Confirmed' : 
+						        			order.shipping.statusOrderID == 2 ? 'Shipper take' : order.shipping.statusOrderID == 3 ? 'Success' : 
+						        			order.shipping.statusOrderID == 4 ? 'At Source Office' : order.shipping.statusOrderID == 5 ? 'In transit to Dest Post' : 
+						        			order.shipping.statusOrderID == 6 ? 'Shipper is shipping' :
+						        			order.shipping.statusOrderID == 7 ? 'Shipper is shipping' : order.shipping.statusOrderID == 8 ? 'Delivered' : 
+						        			order.shipping.statusOrderID == 9 ? 'Failed' : 'Unknown'}">
+						    </td>
+                        
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                </div>
+            </div>
+         </div>
+            
+    </section>
+    
+     <!-- Faild Shipment -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive">
+                	<h2>Failed Shipment Section</h2>
+                    <table class="table">
+                        <thead>
+	                        <th scope="col">ID</th>
+	                      
+	                        <th scope="col">Weight</th>
+	                        <th scope="col">Height</th>
+	                        <th scope="col">Width</th>
+	                        
+	                        <th scope="col">From</th>
+	                        <th scope="col">To</th>
+	                        
+	     					<th scope="col">Goods Type</th>
+	     					<th scope="col">Transport Type</th>
+	                        
+							<th scope="col">Status</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${allShipmentsFailed}">
+                            <td th:text="${{order.orderID}}"></td>
+                            <!-- <td th:text="(${{packet.status}} == 1) ? 'Processing' :
+                                            ((${{packet.status}} == 2) ? 'On the way' :
+                                            ((${{packet.status}} == 3) ? 'Delivered' : 'Not received'))"></td> -->
+                            
+                            <td th:text="${{order.weight}}"></td>
+                            <td th:text="${{order.height}}"></td>
+                            <td th:text="${{order.width}}"></td>
+                            
+                            <td th:text="${{order.source}}"></td>
+                            <td th:text="${{order.dest}}"></td>
+                            
+                            <td th:text="${{order.goods.goodsType}}"></td>
+                            <td th:text="${{order.transport.transportType}}"></td>
+
+						    <td style="font-weight: bold; color: red !important " 
+						        th:text="${order.shipping.statusOrderID == 0 ? 'Pending' : order.shipping.statusOrderID == 1 ? 'Confirmed' : 
+						        			order.shipping.statusOrderID == 2 ? 'Shipper take' : order.shipping.statusOrderID == 3 ? 'Success' : 
+						        			order.shipping.statusOrderID == 4 ? 'At Source Office' : order.shipping.statusOrderID == 5 ? 'In transit to Dest Post' : 
+						        			order.shipping.statusOrderID == 6 ? 'Shipper is shipping' :
+						        			order.shipping.statusOrderID == 7 ? 'Shipper is shipping' : order.shipping.statusOrderID == 8 ? 'Delivered' : 
+						        			order.shipping.statusOrderID == 9 ? 'Failed' : 'Unknown'}">
+						    </td>
+                           
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         </div>
+            
+    </section>
+</section>
+
+<!-- Footer -->
+<footer th:replace="~{shipper/fragments/footer::footer}"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/shipper/jquery/jquery.min.js}"></script>
+<script th:src="@{/shipper/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+
+</body>
+
+</html>

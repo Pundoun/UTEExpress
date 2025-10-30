@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f5f5f5;
+}
+
+.sidebar {
+	width: 250px;
+	background-color: #ffffff;
+	height: 100vh;
+	position: fixed;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.sidebar ul li {
+	padding: 15px;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.sidebar ul li a {
+	text-decoration: none;
+	color: #333;
+	display: block;
+}
+
+.sidebar ul li a:hover {
+	background-color: #f0f0f0;
+}
+
+.content {
+	margin-left: 250px;
+	padding: 20px;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .user-info {
+	display: flex;
+	align-items: center;
+}
+
+.header .user-info span {
+	margin-left: 10px;
+}
+
+.main-content {
+	background-color: #ffffff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+table, th, td {
+	border: 1px solid #eaeaea;
+}
+
+th, td {
+	padding: 10px;
+	text-align: left;
+}
+
+th {
+	background-color: #f9f9f9;
+}
+
+.actions button {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.actions .accept {
+	background-color: #28a745;
+	color: #ffffff;
+}
+
+.actions .reject {
+	background-color: #dc3545;
+	color: #ffffff;
+}
+
+/* Container */
+.container {
+	margin-left: 260px; /* Adjusted margin to fit the sidebar */
+	padding: 20px;
+}
+
+/* Ensure that the form elements are styled correctly */
+.form-group {
+	/*margin-bottom: 15px; */ /*Luc dau*/
+	 display: flex; /* Sử dụng Flexbox */
+    gap: 20px; /* Khoảng cách giữa các form */
+	
+}
+
+/* /*  luc sau moi them */
+ .form1 {
+    width: 100%; 
+    border: 1px solid #ccc; 
+    padding: 10px;
+    box-sizing: border-box; 
+} 
+
+
+/* .form2{
+	width: 40%; Đặt chiều rộng mỗi form để chúng vừa trong cùng hàng
+    border: 1px solid #ccc; Viền form để dễ nhìn
+    padding: 10px;
+    box-sizing: border-box; Đảm bảo padding không làm thay đổi kích thước
+} */  
+
+.form-group label {
+    margin-right: 10px; /* Khoảng cách giữa label và input/select */
+    font-weight: bold;
+    padding: 10px;
+}
+
+.form-group input {
+	width: 30%;
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+}
+
+.form-group select {
+	width: 40%;
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+}
+
+.form-group button {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	border: none;
+	color: white;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.form-group button:hover {
+	background-color: #0056b3;
+}
+
+h1,h2,h4,h5 {
+    background-color: #1CC88B; /* Màu xanh lá */
+    padding: 10px 0; /* Khoảng cách trên và dưới */
+    font-family: 'Arial', sans-serif; /* Phông chữ */
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    color: white; /* Màu chữ trắng */
+    padding: 10px;
+}
+
+h3{
+	color:  #1CC88B;
+}
+
+.legend-green {
+    color: #1CC88B;
+}

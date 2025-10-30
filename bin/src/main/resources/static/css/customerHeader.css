@@ -1,0 +1,47 @@
+.header {
+    background-color: #1CC88B; /* Màu xanh lá */
+    padding: 10px 0; /* Khoảng cách trên và dưới */
+    font-family: 'Arial', sans-serif; /* Phông chữ */
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.header ul {
+    list-style-type: none; /* Loại bỏ các dấu đầu dòng */
+    display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử */
+    justify-content: center; /* Căn giữa các mục */
+    margin: 0; /* Loại bỏ margin mặc định */
+    padding: 0; /* Loại bỏ padding mặc định */
+}
+
+.header ul li {
+    margin: 0 15px; /* Tạo khoảng cách giữa các mục */
+}
+
+.header a {
+    color: white; /* Màu chữ trắng */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    padding: 10px 15px; /* Khoảng cách bên trong liên kết */
+    font-size: 16px; /* Cỡ chữ */
+    transition: all 0.3s ease; /* Hiệu ứng mượt khi thay đổi */
+}
+
+/* Logo */
+.header .logo {
+    margin-right: 1000px; /* Khoảng cách giữa logo và các mục */
+}
+
+.header a:hover {
+    background-color: #ffffff; /* Thay đổi màu nền */
+    color: #1CC88B; /* Thay đổi màu chữ */
+    border-radius: 5px; /* Bo tròn góc */
+    transform: scale(1.1); /* Phóng to khi di chuột */
+}
+
+.header a.active {
+    font-weight: bold; /* In đậm chữ cho mục đang hoạt động */
+}
+
+
+
